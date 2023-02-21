@@ -1,10 +1,10 @@
 
 Zero is not necessarily a valid 2nd param for tcsetattr.
 
-diff -u xioclose.c.~1~ xioclose.c
---- xioclose.c.~1~	Sat Jan 21 07:37:27 2017
-+++ xioclose.c	Tue Feb 21 16:21:06 2023
-@@ -44,7 +44,7 @@
+diff -u a~/xioclose.c a/xioclose.c
+--- a~/xioclose.c	Sat Jan 21 07:37:27 2017
++++ a/xioclose.c	Tue Feb 21 16:21:06 2023
+@@ -44,7 +44,7 @@ int xioclose1(struct single *pipe) {
  #endif /* WITH_OPENSSL */
  #if WITH_TERMIOS
     if (pipe->ttyvalid) {
@@ -13,10 +13,10 @@ diff -u xioclose.c.~1~ xioclose.c
  	 Warn2("cannot restore terminal settings on fd %d: %s",
  	       pipe->fd, strerror(errno));
        }
-diff -u xioshutdown.c.~1~ xioshutdown.c
---- xioshutdown.c.~1~	Sun Jan 10 07:57:35 2021
-+++ xioshutdown.c	Tue Feb 21 16:21:05 2023
-@@ -164,7 +164,7 @@
+diff -u a~/xioshutdown.c a/xioshutdown.c
+--- a~/xioshutdown.c	Sun Jan 10 07:57:35 2021
++++ a/xioshutdown.c	Tue Feb 21 16:21:05 2023
+@@ -164,7 +164,7 @@ int xioshutdown(xiofile_t *sock, int how
     }
  #if WITH_TERMIOS
     if (sock->stream.ttyvalid) {
