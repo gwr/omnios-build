@@ -1,0 +1,27 @@
+
+Zero is not necessarily a valid 2nd param for tcsetattr.
+
+diff -u xioclose.c.~1~ xioclose.c
+--- xioclose.c.~1~	Sat Jan 21 07:37:27 2017
++++ xioclose.c	Tue Feb 21 16:21:06 2023
+@@ -44,7 +44,7 @@
+ #endif /* WITH_OPENSSL */
+ #if WITH_TERMIOS
+    if (pipe->ttyvalid) {
+-      if (Tcsetattr(pipe->fd, 0, &pipe->savetty) < 0) {
++      if (Tcsetattr(pipe->fd, TCSANOW, &pipe->savetty) < 0) {
+ 	 Warn2("cannot restore terminal settings on fd %d: %s",
+ 	       pipe->fd, strerror(errno));
+       }
+diff -u xioshutdown.c.~1~ xioshutdown.c
+--- xioshutdown.c.~1~	Sun Jan 10 07:57:35 2021
++++ xioshutdown.c	Tue Feb 21 16:21:05 2023
+@@ -164,7 +164,7 @@
+    }
+ #if WITH_TERMIOS
+    if (sock->stream.ttyvalid) {
+-      if (Tcsetattr(sock->stream.fd, 0, &sock->stream.savetty) < 0) {
++      if (Tcsetattr(sock->stream.fd, TCSANOW, &sock->stream.savetty) < 0) {
+ 	 Warn2("cannot restore terminal settings on fd %d: %s",
+ 	       sock->stream.fd, strerror(errno));
+       }
